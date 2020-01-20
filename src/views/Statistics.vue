@@ -1,5 +1,5 @@
 <template>
-  <BottomLayout>统计</BottomLayout>
+  <Layout>统计</Layout>
 </template>
 
 <script>

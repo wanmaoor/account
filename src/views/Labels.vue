@@ -1,6 +1,5 @@
 <template>
-  <BottomLayout>labels</BottomLayout>
-
+  <Layout>labels</Layout>
 </template>
 
 <script>
