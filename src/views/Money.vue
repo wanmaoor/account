@@ -5,9 +5,7 @@
 </template>
 
 <script lang="ts">
-  import x from "@/assets/icons/edit.svg"
 
-  console.log(x)
   export default {
     name: "Money",
   }
