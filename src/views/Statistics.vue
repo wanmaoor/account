@@ -1,7 +1,5 @@
 <template>
-  <div>statistics
-    <Nav/>
-  </div>
+  <BottomLayout>统计</BottomLayout>
 </template>
 
 <script>

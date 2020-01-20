@@ -1,7 +1,5 @@
 <template>
-  <div>money
-    <Nav/>
-  </div>
+  <BottomLayout>money</BottomLayout>
 </template>
 
 <script lang="ts">

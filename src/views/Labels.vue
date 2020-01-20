@@ -1,7 +1,6 @@
 <template>
-  <div>labels
-    <Nav/>
-  </div>
+  <BottomLayout>labels</BottomLayout>
+
 </template>
 
 <script>

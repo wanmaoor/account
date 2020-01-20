@@ -4,9 +4,11 @@ import "./registerServiceWorker"
 import router from "./router"
 import store from "./store"
 import Nav from "@/components/Nav.vue"
+import BottomLayout from "@/components/BottomLayout.vue"
 
 Vue.config.productionTip = false
 Vue.component("Nav", Nav)
+Vue.component("BottomLayout", BottomLayout)
 new Vue({
   router,
   store,
