@@ -24,5 +24,6 @@
   .view {
     flex-grow: 1;
     border: 1px solid #000;
+    overflow: auto;
   }
 </style>
