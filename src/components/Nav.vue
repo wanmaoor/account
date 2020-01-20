@@ -1,47 +1,49 @@
 <template>
-  <nav id="nav">
-    <router-link class="item" to="/">
-      <Icon name="edit"/>
+  <nav>
+    <router-link to="/money" class="item" active-class="selected">
+      <Icon name="money"/>
       记账
     </router-link>
-    <router-link class="item" to="/labels">
-      <Icon name="list"/>
+    <router-link to="/labels" class="item" active-class="selected">
+      <Icon name="label"/>
       标签
     </router-link>
-    <router-link class="item" to="/statistics">
-      <Icon name="calculator"/>
+    <router-link to="/statistics" class="item" active-class="selected">
+      <Icon name="chart"/>
       统计
     </router-link>
   </nav>
 </template>
 
 <script lang="ts">
-  import Icon from "@/components/Icon.vue"
-
   export default {
-    name: "Nav",
-    components: {Icon}
+    name: "Nav"
   }
 </script>
 
 <style lang="scss" scoped>
   nav {
     display: flex;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    flex-direction: row;
+    font-size: 12px;
 
     > .item {
+      padding: 2px 0;
       width: 33.33333%;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2px 0;
+      flex-direction: column;
 
       .icon {
         width: 32px;
         height: 32px;
       }
     }
-  }
 
+    > .item.selected {
+      color: #CC0000;
+    }
+  }
 </style>
