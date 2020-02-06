@@ -1,28 +1,5 @@
 <template>
-  <Layout>
-    <div class="tags">
-      <div class="new">
-        <button>新增标签</button>
-      </div>
-      <ul class="current">
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
-      </ul>
-    </div>
-    <div>
-      <label class="notes">
-        <span class="name">备注</span>
-        <input id="" name="" placeholder="请输入备注" type="text">
-      </label>
-    </div>
-    <div>
-      <ul class="types">
-        <li class="selected">支出</li>
-        <li>收入</li>
-      </ul>
-    </div>
+  <Layout content-class="xxx">
     <div class="numberPad">
       <div class="output">100</div>
       <div class="buttons">
@@ -42,6 +19,49 @@
         <button>.</button>
       </div>
     </div>
+    <div>
+      <ul class="types">
+        <li class="selected">支出</li>
+        <li>收入</li>
+      </ul>
+    </div>
+    <div>
+      <label class="notes">
+        <span class="name">备注</span>
+        <input id="" name="" placeholder="请输入备注" type="text">
+      </label>
+    </div>
+    <div class="tags">
+      <div class="new">
+        <button>新增标签</button>
+      </div>
+      <ul class="current">
+        <li>衣</li>
+        <li>食</li>
+        <li>住</li>
+        <li>行</li>
+        <li>衣</li>
+        <li>食</li>
+        <li>住</li>
+        <li>行</li>
+        <li>衣</li>
+        <li>食</li>
+        <li>住</li>
+        <li>行</li>
+        <li>衣</li>
+        <li>食</li>
+        <li>住</li>
+        <li>行</li>
+        <li>衣</li>
+        <li>食</li>
+        <li>住</li>
+        <li>行</li>
+        <li>衣</li>
+        <li>食</li>
+        <li>住</li>
+        <li>行</li>
+      </ul>
+    </div>
   </Layout>
 </template>
 
@@ -51,6 +71,13 @@
     name: "Money",
   }
 </script>
+
+<style>
+  .xxx {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+</style>
 
 <style lang="scss" scoped>
   @import "~@/assets/style/global.scss";
