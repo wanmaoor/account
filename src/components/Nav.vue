@@ -22,9 +22,10 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "~@/assets/style/global.scss";
   nav {
+    @extend %outerShadow;
     display: flex;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
     flex-direction: row;
     font-size: 12px;
 

@@ -10,7 +10,7 @@ $color-highlight: #f00;
 	}
 }
 
-$color-shadow: rgba(0, 0, 0, 0.25);
+$color-shadow: rgba(0, 0, 0, 0.5);
 %outerShadow {
 	box-shadow: 0 0 3px $color-shadow;
 }
