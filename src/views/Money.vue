@@ -1,7 +1,7 @@
 <template>
   <Layout content-class="xxx">
     <Panel/>
-    <Tab/>
+    <Tab :prop-a="123"/>
     <Note/>
     <Tag/>
   </Layout>
