@@ -21,11 +21,11 @@
 
   @Component
   export default class Tag extends Vue {
-    @Prop(Array) readonly labels: Array<string> | undefined
-    selectedTags: Array<string> = []
+    @Prop(Array) readonly labels!: Array<string>
+    @Prop() readonly selectedTags!: Array<string>
 
 
-    @Emit("update:value")
+    @Emit("update:selectedTags")
     switchTag(label: string) {
       const index = this.selectedTags.indexOf(label)
       if (index >= 0) {
@@ -33,7 +33,6 @@
       } else {
         this.selectedTags.push(label)
       }
-      // this.$emit('update:value', this.selectedTags)
       return this.selectedTags
     }
 

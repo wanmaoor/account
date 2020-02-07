@@ -11,7 +11,7 @@
     />
     <Tag
       :labels.sync="labels"
-      @update:value="onUpdateTags"
+      :selectedTags.sync="record.tags"
     />
   </Layout>
 </template>
@@ -41,15 +41,6 @@
       type: "-",
       amount: 0
     }
-
-    onUpdateTags(tags: string[]) {
-      this.record = {...this.record, tags}
-    }
-
-    onUpdateNotes(notes: string | number) {
-      this.record = {...this.record, notes}
-    }
-
   }
 </script>
 
