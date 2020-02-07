@@ -1,29 +1,66 @@
 <template>
   <div class="numberPad">
-    <div class="output">100</div>
+    <div class="output">{{output}}</div>
     <div class="buttons">
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>删除</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>清空</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button class="ok">OK</button>
-      <button class="zero">0</button>
-      <button>.</button>
+      <button @click="typeNumber">1</button>
+      <button @click="typeNumber">2</button>
+      <button @click="typeNumber">3</button>
+      <button @click="deleteNumber">删除</button>
+      <button @click="typeNumber">4</button>
+      <button @click="typeNumber">5</button>
+      <button @click="typeNumber">6</button>
+      <button @click="clearNumber">清空</button>
+      <button @click="typeNumber">7</button>
+      <button @click="typeNumber">8</button>
+      <button @click="typeNumber">9</button>
+      <button @click="calculateNumber" class="ok">OK</button>
+      <button @click="typeNumber" class="zero">0</button>
+      <button @click="typeNumber">.</button>
     </div>
   </div>
 </template>
 
-<script>
-	export default {
-		name: "Panel"
-	}
+<script lang="ts">
+  import {Component, Vue} from "vue-property-decorator"
+
+  @Component
+  export default class Panel extends Vue {
+    output: string = "0"
+
+    typeNumber(e: MouseEvent) {
+      const button = (e.target as HTMLButtonElement)
+      const input = button.textContent as string
+      if (this.output.length === 16) {
+        return
+      }
+      if (this.output === "0") {
+        if ("0123456789".indexOf(input) >= 0) {
+          this.output = input
+        } else {
+          this.output += input
+        }
+        return
+      }
+      if (this.output.indexOf(".") >= 0 && input === ".") {
+        return
+      }
+      this.output += input
+    }
+
+    deleteNumber() {
+      const length = this.output.length
+      this.output = this.output.substr(0, length - 1)
+      if (length === 1) {
+        this.output = "0"
+      }
+    }
+
+    clearNumber() {
+      this.output = "0"
+    }
+
+    calculateNumber() {}
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -35,6 +72,7 @@
       font-family: Consolas, monospace;
       padding: 9px 16px;
       text-align: right;
+      height: 72px;
       @extend %innerShadow
     }
 
