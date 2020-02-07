@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button>新增标签</button>
+      <button @click="createTag">新增标签</button>
     </div>
     <ul class="current">
       <li
@@ -21,7 +21,7 @@
 
   @Component
   export default class Tag extends Vue {
-    @Prop(Array) labels: Array<string> | undefined
+    @Prop(Array) readonly labels: Array<string> | undefined
     selectedTags: Array<string> = []
 
     switchTag(label: string) {
@@ -30,6 +30,15 @@
         this.selectedTags.splice(index, 1)
       } else {
         this.selectedTags.push(label)
+      }
+    }
+
+    createTag() {
+      const labelName = window.prompt("请输入标签名")
+      if (labelName === "") {
+        window.alert("标签不能为空")
+      } else {
+        this.$emit("update:labels", [...this.labels!, labelName])
       }
     }
   }

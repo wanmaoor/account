@@ -3,7 +3,9 @@
     <Panel/>
     <Tab :prop-a="123"/>
     <Note/>
-    <Tag :labels="labels"/>
+    <Tag
+      :labels.sync="labels"
+    />
   </Layout>
 </template>
 
