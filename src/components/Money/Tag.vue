@@ -4,38 +4,35 @@
       <button>新增标签</button>
     </div>
     <ul class="current">
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
+      <li
+        :class="{selected: selectedTags.indexOf(label)>=0}"
+        :key="index"
+        @click="switchTag(label)"
+        v-for="(label, index) in labels"
+      >
+        {{label}}
+      </li>
     </ul>
   </div>
 </template>
 
-<script>
-	export default {
-		name: "Tag"
-	}
+<script lang="ts">
+  import {Component, Prop, Vue} from "vue-property-decorator"
+
+  @Component
+  export default class Tag extends Vue {
+    @Prop(Array) labels: Array<string> | undefined
+    selectedTags: Array<string> = []
+
+    switchTag(label: string) {
+      const index = this.selectedTags.indexOf(label)
+      if (index >= 0) {
+        this.selectedTags.splice(index, 1)
+      } else {
+        this.selectedTags.push(label)
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -51,14 +48,20 @@
       flex-wrap: wrap;
 
       > li {
-        background: #d9d9d9;
+        $bg: #d9d9d9;
         $h: 24px;
+        background: $bg;
         height: $h;
         line-height: $h;
         border-radius: $h/2;
         padding: 0 16px;
         margin-right: 12px;
         margin-top: 4px;
+
+        &.selected {
+          background: darken($bg, 50%);
+          color: #eeeeee;
+        }
       }
     }
 
