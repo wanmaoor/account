@@ -32,7 +32,7 @@
     }
 
     mounted() {
-      console.log(this.propA)
+      // console.log(this.propA)
     }
   }
 </script>
