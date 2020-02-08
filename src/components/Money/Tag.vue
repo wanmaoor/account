@@ -41,6 +41,8 @@
       const labelName = window.prompt("请输入标签名")
       if (labelName === "") {
         window.alert("标签不能为空")
+      } else if (labelName === null) {
+        return
       } else {
         this.$emit("update:labels", [...this.labels!, labelName])
       }
