@@ -1,7 +1,8 @@
 <template>
-  <Layout content-class="xxx">{{record}}
+  <Layout content-class="xxx">
     <Panel
       :expression.sync="record.amount"
+      @submit="handleSubmit"
     />
     <Tab
       :type.sync="record.type"
@@ -31,15 +32,21 @@
   }
 
   @Component({
-    components: {Tag, Note, Tab, Panel}
+    "components": {Tag, Note, Tab, Panel}
   })
   export default class Money extends Vue {
     labels = ["衣", "食", "住", "行"]
+    recordList: Record[] = []
     record: Record = {
       tags: [],
       notes: "",
       type: "-",
       amount: 0
+    }
+
+    handleSubmit(res: string) {
+      this.recordList.push(JSON.parse(JSON.stringify(res)))
+      window.localStorage.setItem("recordList", JSON.stringify(this.recordList))
     }
   }
 </script>

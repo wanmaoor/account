@@ -62,7 +62,10 @@
 
     @Emit("update:expression")
     calculateNumber() {
-      return parseFloat(this.output)
+      const res = parseFloat(this.output)
+      this.output = "0"
+      this.$emit("submit", res)
+      return res
     }
   }
 </script>
