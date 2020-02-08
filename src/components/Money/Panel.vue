@@ -21,11 +21,12 @@
 </template>
 
 <script lang="ts">
-  import {Component, Emit, Vue} from "vue-property-decorator"
+  import {Component, Emit, Prop, Vue} from "vue-property-decorator"
 
   @Component
   export default class Panel extends Vue {
-    output: string = "0"
+    @Prop() expression!: number
+    output: string = this.expression.toString()
 
     typeNumber(e: MouseEvent) {
       const button = (e.target as HTMLButtonElement)
@@ -59,9 +60,9 @@
       this.output = "0"
     }
 
-    @Emit("update:value")
+    @Emit("update:expression")
     calculateNumber() {
-      return this.output
+      return parseFloat(this.output)
     }
   }
 </script>

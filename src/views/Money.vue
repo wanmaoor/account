@@ -1,13 +1,13 @@
 <template>
   <Layout content-class="xxx">{{record}}
     <Panel
-      @update:value="onUpdateAmount"
+      :expression.sync="record.amount"
     />
     <Tab
       :type.sync="record.type"
     />
     <Note
-      @update:value="onUpdateNotes"
+      :notes.sync="record.notes"
     />
     <Tag
       :labels.sync="labels"
@@ -50,10 +50,6 @@
       this.record = {...this.record, notes}
     }
 
-
-    onUpdateAmount(amount: string) {
-      this.record = {...this.record, amount: parseFloat(amount)}
-    }
   }
 </script>
 
