@@ -34,7 +34,7 @@
     "lint-staged": "^9.5.0",
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
-    "svg-sprite-loader": "^4.1.6",
+    "svg-sprite-loader": "^4.2.1",
     "svgo-loader": "^2.2.1",
     "typescript": "~3.7.5",
     "vue-template-compiler": "^2.6.10"
