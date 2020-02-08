@@ -17,13 +17,15 @@
 </template>
 
 <script lang="ts">
-  import {Component, Prop, Vue} from "vue-property-decorator"
+  import {Component, Emit, Prop, Vue} from "vue-property-decorator"
 
   @Component
   export default class Tag extends Vue {
     @Prop(Array) readonly labels: Array<string> | undefined
     selectedTags: Array<string> = []
 
+
+    @Emit("update:value")
     switchTag(label: string) {
       const index = this.selectedTags.indexOf(label)
       if (index >= 0) {
@@ -31,6 +33,8 @@
       } else {
         this.selectedTags.push(label)
       }
+      // this.$emit('update:value', this.selectedTags)
+      return this.selectedTags
     }
 
     createTag() {
