@@ -1,11 +1,10 @@
 <template>
-  <Layout content-class="xxx">
+  <Layout content-class="xxx">{{record}}
     <Panel
       @update:value="onUpdateAmount"
     />
     <Tab
-      :prop-a="123"
-      @update:value="onUpdateType"
+      :type.sync="record.type"
     />
     <Note
       @update:value="onUpdateNotes"
@@ -24,26 +23,36 @@
   import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
 
+  interface Record {
+    tags: Array<string>
+    notes: string | number
+    type: string
+    amount: number
+  }
+
   @Component({
     components: {Tag, Note, Tab, Panel}
   })
   export default class Money extends Vue {
     labels = ["衣", "食", "住", "行"]
-
-    onUpdateTags(value: string[]) {
-      console.log(value)
+    record: Record = {
+      tags: [],
+      notes: "",
+      type: "-",
+      amount: 0
     }
 
-    onUpdateNotes(value: string | number) {
-      console.log(value)
+    onUpdateTags(tags: string[]) {
+      this.record = {...this.record, tags}
     }
 
-    onUpdateType(value: string) {
-      console.log(value)
+    onUpdateNotes(notes: string | number) {
+      this.record = {...this.record, notes}
     }
 
-    onUpdateAmount(value: string) {
-      console.log(value)
+
+    onUpdateAmount(amount: string) {
+      this.record = {...this.record, amount: parseFloat(amount)}
     }
   }
 </script>

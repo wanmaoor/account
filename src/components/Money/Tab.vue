@@ -16,23 +16,20 @@
 </template>
 
 <script lang="ts">
-  import {Component, Prop, Vue} from "vue-property-decorator"
+  import {Component, Emit, Prop, Vue} from "vue-property-decorator"
 
   @Component
   export default class Tab extends Vue {
-    type = "-"
-    @Prop(Number) propA: number | undefined
+    @Prop(String) readonly type!: string
 
     //   告诉Vue运行时是个number     告诉Vue编译时是number或undefined
-    selectType(type: string): void {
+
+    @Emit("update:type")
+    selectType(type: string): string {
       if (type !== "-" && type !== "+") {
         throw new Error("type is unknown")
       }
-      this.type = type
-    }
-
-    mounted() {
-      // console.log(this.propA)
+      return type
     }
   }
 </script>

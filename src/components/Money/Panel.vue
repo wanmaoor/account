@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue} from "vue-property-decorator"
+  import {Component, Emit, Vue} from "vue-property-decorator"
 
   @Component
   export default class Panel extends Vue {
@@ -59,7 +59,10 @@
       this.output = "0"
     }
 
-    calculateNumber() {}
+    @Emit("update:value")
+    calculateNumber() {
+      return this.output
+    }
   }
 </script>
 
