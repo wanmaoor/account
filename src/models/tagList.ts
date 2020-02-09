@@ -4,7 +4,7 @@ interface ITagList {
   data: string[]
   fetchData: () => string[]
   saveData: () => void
-  create: (name: string) => boolean
+  create: (name: string) => "success" | "duplicated"
 }
 
 const tagList: ITagList = {
@@ -18,11 +18,11 @@ const tagList: ITagList = {
   },
   create(name) {
     if (this.data.indexOf(name) >= 0) {
-      throw new Error("duplicated")
+      return "duplicated"
     }
     this.data.push(name)
     this.saveData()
-    return true
+    return "success"
   }
 }
 

@@ -26,12 +26,12 @@
     createTag() {
       const labelName = window.prompt("请输入标签名")
       if (labelName) {
-        try {
-          tagList.create(labelName)
-        } catch (error) {
-          if (error.message === "duplicated") {
-            window.alert("标签名重复了")
-          }
+        const status = tagList.create(labelName)
+        if (status === "duplicated") {
+          window.alert("标签名重复")
+        }
+        if (status === "success") {
+          window.alert("添加成功")
         }
       }
     }
