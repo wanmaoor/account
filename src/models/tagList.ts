@@ -1,8 +1,13 @@
 const keyName = "tagList"
 
+interface IData {
+  id: string,
+  name: string
+}
+
 interface ITagList {
-  data: string[]
-  fetchData: () => string[]
+  data: IData[]
+  fetchData: () => IData[]
   saveData: () => void
   create: (name: string) => "success" | "duplicated"
 }
@@ -17,10 +22,11 @@ const tagList: ITagList = {
     window.localStorage.setItem(keyName, JSON.stringify(this.data))
   },
   create(name) {
-    if (this.data.indexOf(name) >= 0) {
+    const names = this.data.map(item => item.name)
+    if (names.indexOf(name) >= 0) {
       return "duplicated"
     }
-    this.data.push(name)
+    this.data.push({id: name, name})
     this.saveData()
     return "success"
   }
