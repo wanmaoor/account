@@ -63,7 +63,7 @@
     calculateNumber() {
       const res = parseFloat(this.output)
       this.$emit("update:expression", res)
-      this.$emit("submit", res)
+      this.$emit("submit")
       this.output = "0"
     }
   }

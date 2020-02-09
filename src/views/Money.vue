@@ -29,7 +29,7 @@
     notes: string | number
     type: string
     amount: number
-
+    createdAt?: Date
   }
 
   @Component({
@@ -47,6 +47,7 @@
 
     handleSubmit() {
       const copy: Record = JSON.parse(JSON.stringify(this.record))
+      copy.createdAt = new Date()
       this.recordList.push(copy)
     }
 
