@@ -43,7 +43,7 @@
       } else if (labelName === null) {
         return
       } else {
-        this.$emit("update:labels", [...this.labels!, labelName])
+        this.$emit("update:labels", [...this.labels, labelName])
       }
     }
   }

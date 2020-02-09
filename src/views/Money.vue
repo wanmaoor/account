@@ -1,5 +1,5 @@
 <template>
-  <Layout content-class="xxx">
+  <Layout content-class="xxx">{{recordList}}
     <Panel
       :expression.sync="record.amount"
       @submit="handleSubmit"
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue} from "vue-property-decorator"
+  import {Component, Vue, Watch} from "vue-property-decorator"
   import Tag from "@/components/Money/Tag.vue"
   import Note from "@/components/Money/Note.vue"
   import Tab from "@/components/Money/Tab.vue"
@@ -29,6 +29,7 @@
     notes: string | number
     type: string
     amount: number
+
   }
 
   @Component({
@@ -36,7 +37,7 @@
   })
   export default class Money extends Vue {
     labels = ["衣", "食", "住", "行"]
-    recordList: Record[] = []
+    recordList: Record[] = JSON.parse(window.localStorage.getItem("recordList") || "[]")
     record: Record = {
       tags: [],
       notes: "",
@@ -44,8 +45,13 @@
       amount: 0
     }
 
-    handleSubmit(res: string) {
-      this.recordList.push(JSON.parse(JSON.stringify(res)))
+    handleSubmit() {
+      const copy: Record = JSON.parse(JSON.stringify(this.record))
+      this.recordList.push(copy)
+    }
+
+    @Watch("recordList")
+    onRecordListChanged() {
       window.localStorage.setItem("recordList", JSON.stringify(this.recordList))
     }
   }
