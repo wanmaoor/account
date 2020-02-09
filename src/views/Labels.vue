@@ -1,10 +1,21 @@
 <template>
   <Layout>
-    <ol>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
+    <ol class="tagList">
+      <li><span>衣</span>
+        <Icon name="right"/>
+      </li>
+      <li><span>食</span>
+        <Icon name="right"/>
+      </li>
+      <li><span>住</span>
+        <Icon name="right"/>
+      </li>
+      <li><span>行</span>
+        <Icon name="right"/>
+      </li>
+      <div>
+        <button>新建标签</button>
+      </div>
     </ol>
   </Layout>
 </template>
@@ -18,5 +29,11 @@
 </script>
 
 <style lang="scss" scoped>
+  .tagList {
+    background: white;
 
+    > li {
+
+    }
+  }
 </style>
