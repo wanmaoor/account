@@ -5,12 +5,12 @@
     </div>
     <ul class="current">
       <li
-        :class="{selected: selectedTags.indexOf(label)>=0}"
-        :key="index"
-        @click="switchTag(label)"
-        v-for="(label, index) in labels"
+        :class="{selected: selectedTags.indexOf(label.name)>=0}"
+        :key="label.id"
+        @click="switchTag(label.name)"
+        v-for="label in labels"
       >
-        {{label}}
+        {{label.name}}
       </li>
     </ul>
   </div>
@@ -21,7 +21,7 @@
 
   @Component
   export default class Tag extends Vue {
-    @Prop(Array) readonly labels!: Array<string>
+    @Prop(Array) readonly labels!: IData[]
     @Prop() readonly selectedTags!: Array<string>
 
 

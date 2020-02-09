@@ -1,17 +1,4 @@
 const keyName = "tagList"
-
-interface IData {
-  id: string,
-  name: string
-}
-
-interface ITagList {
-  data: IData[]
-  fetchData: () => IData[]
-  saveData: () => void
-  create: (name: string) => "success" | "duplicated"
-}
-
 const tagList: ITagList = {
   data: [],
   fetchData() {
