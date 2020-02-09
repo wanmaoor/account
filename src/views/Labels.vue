@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <ol class="tagList">
-      <li :key="index" v-for="(label, index) in labels">
-        <span>{{label}}</span>
+      <li :key="label.id" v-for="label in labels">
+        <span>{{label.name}}</span>
         <Icon name="right"/>
       </li>
 
