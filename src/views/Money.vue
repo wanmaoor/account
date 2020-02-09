@@ -23,15 +23,16 @@
   import Note from "@/components/Money/Note.vue"
   import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
-  import model from "@/model"
+  import recordList from "@/models/recordList"
+  import tagList from "@/models/tagList"
 
 
   @Component({
     "components": {Tag, Note, Tab, Panel}
   })
   export default class Money extends Vue {
-    labels = ["衣", "食", "住", "行"]
-    recordList = model.fetchData()
+    labels = tagList.fetchData()
+    recordList = recordList.fetchData()
     record: RecordItem = {
       tags: [],
       notes: "",
@@ -47,7 +48,7 @@
 
     @Watch("recordList")
     onRecordListChanged() {
-      model.saveData(this.recordList)
+      recordList.saveData(this.recordList)
     }
   }
 </script>
