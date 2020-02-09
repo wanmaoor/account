@@ -1,5 +1,5 @@
 <template>
-  <Layout content-class="xxx">{{recordList}}
+  <Layout content-class="xxx">
     <Panel
       :expression.sync="record.amount"
       @submit="handleSubmit"
@@ -23,22 +23,16 @@
   import Note from "@/components/Money/Note.vue"
   import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
+  import model from "@/model"
 
-  interface Record {
-    tags: Array<string>
-    notes: string | number
-    type: string
-    amount: number
-    createdAt?: Date
-  }
 
   @Component({
     "components": {Tag, Note, Tab, Panel}
   })
   export default class Money extends Vue {
     labels = ["衣", "食", "住", "行"]
-    recordList: Record[] = JSON.parse(window.localStorage.getItem("recordList") || "[]")
-    record: Record = {
+    recordList = model.fetchData()
+    record: RecordItem = {
       tags: [],
       notes: "",
       type: "-",
@@ -46,14 +40,14 @@
     }
 
     handleSubmit() {
-      const copy: Record = JSON.parse(JSON.stringify(this.record))
+      const copy: RecordItem = JSON.parse(JSON.stringify(this.record))
       copy.createdAt = new Date()
       this.recordList.push(copy)
     }
 
     @Watch("recordList")
     onRecordListChanged() {
-      window.localStorage.setItem("recordList", JSON.stringify(this.recordList))
+      model.saveData(this.recordList)
     }
   }
 </script>
