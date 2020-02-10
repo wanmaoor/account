@@ -1,12 +1,17 @@
 <template>
   <Layout>
-    <ol class="tagList">
-      <li :key="label.id" v-for="label in labels">
+    <div class="tagList">
+      <router-link
+        :key="label.id"
+        class="tag"
+        :to="`/labels/edit/${label.id}`"
+        v-for="label in labels"
+      >
         <span>{{label.name}}</span>
         <Icon name="right"/>
-      </li>
+      </router-link>
 
-    </ol>
+    </div>
     <div class="createTag-Wrapper">
       <button @click="createTag" class="createTag">新建标签</button>
     </div>
@@ -44,7 +49,7 @@
     font-size: 16px;
     padding-left: 16px;
 
-    > li {
+    > .tag {
       min-height: 64px;
       display: flex;
       align-items: center;
