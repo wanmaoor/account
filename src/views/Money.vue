@@ -7,11 +7,13 @@
     <Tab
       :type.sync="record.type"
     />
-    <InputItem
-      :notes.sync="record.notes"
-      title="备注"
-      placeholder="请输入备注"
-    />
+    <div class="notes">
+      <InputItem
+        :notes.sync="record.notes"
+        placeholder="请输入备注"
+        title="备注"
+      />
+    </div>
     <Tag
       :labels.sync="labels"
       :selectedTags.sync="record.tags"
@@ -59,5 +61,9 @@
   .xxx {
     display: flex;
     flex-direction: column-reverse;
+  }
+
+  .notes {
+    padding: 12px 0;
   }
 </style>

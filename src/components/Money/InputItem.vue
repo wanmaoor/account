@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="notes">
+    <label class="inputItem">
       <span class="name">{{title}}</span>
       <input
         :value="notes"
@@ -28,8 +28,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .notes {
-    background: #f5f5f5;
+  .inputItem {
     font-size: 14px;
     padding-left: 16px;
     display: flex;
@@ -40,7 +39,7 @@
     }
 
     input {
-      height: 64px;
+      height: 40px;
       background: transparent;
       border: none;
       flex-grow: 1;
