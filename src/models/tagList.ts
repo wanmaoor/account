@@ -20,4 +20,3 @@ const tagList: ITagList = {
 }
 
 export default tagList
-
