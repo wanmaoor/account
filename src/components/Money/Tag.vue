@@ -1,8 +1,5 @@
 <template>
   <div class="tags">
-    <div class="new">
-      <button @click="createTag">新增标签</button>
-    </div>
     <ul class="current">
       <li
         :class="{selected: selectedTags.indexOf(label.name)>=0}"
@@ -34,17 +31,6 @@
         this.selectedTags.push(label)
       }
       return this.selectedTags
-    }
-
-    createTag() {
-      const labelName = window.prompt("请输入标签名")
-      if (labelName === "") {
-        window.alert("标签不能为空")
-      } else if (labelName === null) {
-        return
-      } else {
-        this.$emit("update:labels", [...this.labels, labelName])
-      }
     }
   }
 </script>

@@ -1,3 +1,5 @@
+import IDGenerator from "@/lib/IDGenerator"
+
 const keyName = "tagList"
 const tagList: ITagList = {
   data: [],
@@ -13,7 +15,7 @@ const tagList: ITagList = {
     if (names.indexOf(name) >= 0) {
       return "duplicated"
     }
-    this.data.push({id: name, name})
+    this.data.push({id: IDGenerator().toString(), name})
     this.saveData()
     return "success"
   },
@@ -43,6 +45,7 @@ const tagList: ITagList = {
     }
     this.data.splice(index, 1)
     this.saveData()
+    return true
   }
 }
 

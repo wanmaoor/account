@@ -17,5 +17,5 @@ interface ITagList {
   saveData: () => void
   create: (name: string) => "success" | "duplicated"
   update: (obj: IData) => "success" | "not found" | "duplicated"
-  remove: (id: string) => void
+  remove: (id: string) => boolean
 }

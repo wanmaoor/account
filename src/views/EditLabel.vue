@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="navBar">
-      <Icon class="leftIcon" name="left" @click.native="back"/>
+      <Icon @click.native="back" class="leftIcon" name="left"/>
       <span class="title">编辑标签</span>
     </div>
     <div class="inputItem">
@@ -51,7 +51,9 @@
 
     remove() {
       if (this.tag) {
-        tagList.remove(this.tag.id)
+        if (tagList.remove(this.tag.id)) {
+          this.$router.back()
+        }
       }
     }
 
