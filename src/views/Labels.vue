@@ -3,8 +3,8 @@
     <div class="tagList">
       <router-link
         :key="label.id"
-        class="tag"
         :to="`/labels/edit/${label.id}`"
+        class="tag"
         v-for="label in labels"
       >
         <span>{{label.name}}</span>
@@ -12,8 +12,8 @@
       </router-link>
 
     </div>
-    <div class="createTag-Wrapper">
-      <button @click="createTag" class="createTag">新建标签</button>
+    <div class="createTag">
+      <Button @click="createTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -21,10 +21,12 @@
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
   import tagList from "@/models/tagList"
+  import Button from "@/components/Button.vue"
 
   tagList.fetchData()
-
-  @Component
+  @Component({
+    components: {Button}
+  })
   export default class Labels extends Vue {
     labels = tagList.data
 
@@ -66,17 +68,9 @@
   }
 
   .createTag {
-    background: cornflowerblue;
-    color: cornsilk;
-    border-radius: 4px;
-    border: none;
-    height: 40px;
-    padding: 0 16px;
-
-    &-Wrapper {
-      text-align: center;
-      padding: 16px;
-      margin-top: 28px;
-    }
+    text-align: center;
+    padding: 16px;
+    margin-top: 28px;
   }
+
 </style>
