@@ -1,11 +1,11 @@
 <template>
   <div>
     <label class="notes">
-      <span class="name">备注</span>
+      <span class="name">{{title}}</span>
       <input
         :value="notes"
         @change="handleChange"
-        placeholder="请输入备注"
+        :placeholder="placeholder"
         type="text"
       >
     </label>
@@ -17,7 +17,9 @@
 
   @Component
   export default class Note extends Vue {
-    @Prop() notes!: string | number
+    @Prop() notes!: string
+    @Prop({required: true}) title!: string
+    @Prop() placeholder?: string
 
     handleChange(e: InputEvent) {
       this.$emit("update:notes", (e.target as HTMLInputElement).value)

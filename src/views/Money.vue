@@ -9,6 +9,8 @@
     />
     <Note
       :notes.sync="record.notes"
+      title="备注"
+      placeholder="请输入备注"
     />
     <Tag
       :labels.sync="labels"
