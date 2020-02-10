@@ -16,4 +16,6 @@ interface ITagList {
   fetchData: () => IData[]
   saveData: () => void
   create: (name: string) => "success" | "duplicated"
+  update: (obj: IData) => "success" | "not found" | "duplicated"
+  remove: (id: string) => void
 }

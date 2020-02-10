@@ -3,26 +3,28 @@
     <label class="inputItem">
       <span class="name">{{title}}</span>
       <input
-        :value="notes"
-        @change="handleChange"
         :placeholder="placeholder"
+        :value="notes"
+        @input="handleChange($event.target.value)"
         type="text"
+        v-focus
       >
     </label>
   </div>
 </template>
 
 <script lang="ts">
-  import {Component, Prop, Vue} from "vue-property-decorator"
+  import {Component, Prop, Vue, Watch} from "vue-property-decorator"
 
   @Component
   export default class InputItem extends Vue {
-    @Prop() notes!: string
+    @Prop() readonly notes!: string
     @Prop({required: true}) title!: string
     @Prop() placeholder?: string
 
-    handleChange(e: InputEvent) {
-      this.$emit("update:notes", (e.target as HTMLInputElement).value)
+    @Watch("notes")
+    handleChange(val: string) {
+      this.$emit("update:notes", (val))
     }
   }
 </script>
