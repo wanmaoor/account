@@ -2,17 +2,17 @@
   <Layout>
     <Icon name="left"/>
     <span>编辑标签</span>
-    <Note placeholder="请输入标签名" title="标签名"/>
+    <InputItem placeholder="请输入标签名" title="标签名"/>
   </Layout>
 </template>
 
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
   import tagList from "@/models/tagList"
-  import Note from "@/components/Money/Note.vue"
+  import InputItem from "@/components/Money/InputItem.vue"
 
   @Component({
-    components: {Note}
+    components: {InputItem}
   })
   export default class EditLabel extends Vue {
     created() {

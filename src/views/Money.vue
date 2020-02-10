@@ -7,7 +7,7 @@
     <Tab
       :type.sync="record.type"
     />
-    <Note
+    <InputItem
       :notes.sync="record.notes"
       title="备注"
       placeholder="请输入备注"
@@ -22,7 +22,7 @@
 <script lang="ts">
   import {Component, Vue, Watch} from "vue-property-decorator"
   import Tag from "@/components/Money/Tag.vue"
-  import Note from "@/components/Money/Note.vue"
+  import InputItem from "@/components/Money/InputItem.vue"
   import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
   import recordList from "@/models/recordList"
@@ -30,7 +30,7 @@
 
 
   @Component({
-    "components": {Tag, Note, Tab, Panel}
+    "components": {Tag, InputItem, Tab, Panel}
   })
   export default class Money extends Vue {
     labels = tagList.fetchData()

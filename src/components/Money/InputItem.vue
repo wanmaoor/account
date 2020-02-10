@@ -16,7 +16,7 @@
   import {Component, Prop, Vue} from "vue-property-decorator"
 
   @Component
-  export default class Note extends Vue {
+  export default class InputItem extends Vue {
     @Prop() notes!: string
     @Prop({required: true}) title!: string
     @Prop() placeholder?: string
