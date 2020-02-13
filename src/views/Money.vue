@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue, Watch} from "vue-property-decorator"
+  import {Component, Vue} from "vue-property-decorator"
   import Tag from "@/components/Money/Tag.vue"
   import InputItem from "@/components/Money/InputItem.vue"
   import Tab from "@/components/Money/Tab.vue"
@@ -45,14 +45,15 @@
     }
 
     handleSubmit() {
-      const copy: RecordItem = JSON.parse(JSON.stringify(this.record))
-      copy.createdAt = new Date()
-      this.recordList.push(copy)
-    }
+      if (this.record.amount === 0) {
+        window.alert("你还没输入金额哦")
+        return
+      } else {
+        recordList.updateData(this.record)
+        this.record.tags = []
+        this.record.notes = ""
+      }
 
-    @Watch("recordList")
-    onRecordListChanged() {
-      recordList.saveData(this.recordList)
     }
   }
 </script>
