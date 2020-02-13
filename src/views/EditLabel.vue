@@ -43,7 +43,6 @@
     }
 
     updateTag(name: string) {
-      console.log(name)
       if (this.tag) {
         tagList.update({id: this.tag.id, name})
       }
