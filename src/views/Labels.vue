@@ -23,12 +23,11 @@
   import tagList from "@/models/tagList"
   import Button from "@/components/Button.vue"
 
-  tagList.fetchData()
   @Component({
     components: {Button}
   })
   export default class Labels extends Vue {
-    labels = tagList.data
+    labels = window.labelList
 
     createTag() {
       const labelName = window.prompt("请输入标签名")

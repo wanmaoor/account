@@ -28,15 +28,13 @@
   import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
   import recordList from "@/models/recordList"
-  import tagList from "@/models/tagList"
 
 
   @Component({
     "components": {Tag, InputItem, Tab, Panel}
   })
   export default class Money extends Vue {
-    labels = tagList.fetchData()
-    recordList = recordList.fetchData()
+    labels = window.labelList
     record: RecordItem = {
       tags: [],
       notes: "",
@@ -53,7 +51,6 @@
         this.record.tags = []
         this.record.notes = ""
       }
-
     }
   }
 </script>

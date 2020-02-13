@@ -19,3 +19,7 @@ interface ITagList {
   update: (obj: IData) => "success" | "not found" | "duplicated"
   remove: (id: string) => boolean
 }
+
+interface Window {
+  labelList: IData[]
+}

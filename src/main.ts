@@ -6,6 +6,9 @@ import store from "./store"
 import Nav from "@/components/Nav.vue"
 import Layout from "@/components/Layout.vue"
 import Icon from "@/components/Icon.vue"
+import tagList from "@/models/tagList"
+
+window.labelList = tagList.fetchData()
 
 Vue.config.productionTip = false
 Vue.component("Nav", Nav)
