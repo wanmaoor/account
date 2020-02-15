@@ -1553,6 +1553,19 @@
   resolved "https://registry.npm.taobao.org/@vue/web-component-wrapper/download/@vue/web-component-wrapper-1.2.0.tgz#bb0e46f1585a7e289b4ee6067dcc5a6ae62f1dd1"
   integrity sha1-uw5G8VhafiibTuYGfcxaauYvHdE=
 
+"@wanmaoor/giaoui@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/@wanmaoor/giaoui/-/giaoui-0.0.1.tgz#af81a0b47e864fbce80ccbfdc21a1687d3187a59"
+  integrity sha512-tKCiGVq0+EpTOhckOJ8i2rwSB7v/3KYBamt2ut0kGHHLbQ6Ld1HDvdXmdEDC1YjYVfK3/SxK+Nw5eBwphMx50w==
+  dependencies:
+    core-js "^3.4.4"
+    register-service-worker "^1.6.2"
+    vue "^2.6.10"
+    vue-class-component "^7.0.2"
+    vue-property-decorator "^8.3.0"
+    vue-router "^3.1.3"
+    vuex "^3.1.2"
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.npm.taobao.org/@webassemblyjs/ast/download/@webassemblyjs/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
