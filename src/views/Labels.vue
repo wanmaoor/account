@@ -13,7 +13,7 @@
 
     </div>
     <div class="createTag">
-      <Button @click="createTag">新建标签</Button>
+      <Button type="primary" @click="createTag">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -21,7 +21,7 @@
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
   import tagList from "@/models/tagList"
-  import Button from "@/components/Button.vue"
+  import {Button} from "@wanmaoor/giaoui"
 
   @Component({
     components: {Button}

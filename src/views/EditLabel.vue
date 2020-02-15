@@ -13,7 +13,7 @@
       />
     </div>
     <div class="wrapper">
-      <Button @click="remove">删除标签</Button>
+      <Button type="danger" round @click="remove">删除标签</Button>
     </div>
   </Layout>
 </template>
@@ -22,7 +22,7 @@
   import {Component, Vue} from "vue-property-decorator"
   import tagList from "@/models/tagList"
   import InputItem from "@/components/Money/InputItem.vue"
-  import Button from "@/components/Button.vue"
+  import {Button} from "@wanmaoor/giaoui"
 
   @Component({
     components: {Button, InputItem}
@@ -32,8 +32,7 @@
 
     created() {
       const id = this.$route.params.id
-      tagList.fetchData()
-      const tags = tagList.data
+      const tags = window.labelList
       this.tag = tags.filter(item => item.id === id)[0]
       if (this.tag) {
         console.log(this.tag)
