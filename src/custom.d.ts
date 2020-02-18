@@ -11,15 +11,10 @@ interface IData {
   name: string
 }
 
-interface ITagList {
-  data: IData[]
-  fetchData: () => IData[]
-  saveData: () => void
-  create: (name: string) => "success" | "duplicated"
-  update: (obj: IData) => "success" | "not found" | "duplicated"
-  remove: (id: string) => boolean
+interface IRecordList {
+  recordList: RecordItem[]
 }
 
-interface Window {
-  labelList: IData[]
+interface ITagList {
+  tagList: IData[]
 }

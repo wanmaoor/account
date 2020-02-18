@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-  import {Component, Prop, Vue, Watch} from "vue-property-decorator"
+  import {Component, Prop, Vue} from "vue-property-decorator"
 
   @Component
   export default class InputItem extends Vue {
@@ -22,9 +22,8 @@
     @Prop({required: true}) title!: string
     @Prop() placeholder?: string
 
-    @Watch("notes")
     handleChange(val: string) {
-      this.$emit("update:notes", (val))
+      this.$emit("update:notes", val)
     }
   }
 </script>
