@@ -27,7 +27,6 @@
   import InputItem from "@/components/Money/InputItem.vue"
   import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
-  import recordList from "@/models/recordList"
 
 
   @Component({
@@ -47,7 +46,7 @@
         window.alert("你还没输入金额哦")
         return
       } else {
-        recordList.updateData(this.record)
+        this.$store.commit("addRecord", this.record)
         this.record.tags = []
         this.record.notes = ""
       }
