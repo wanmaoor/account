@@ -1,4 +1,4 @@
-declare module '*.vue' {
+declare module "*.vue" {
   import Vue from "vue"
   export default Vue
 }
@@ -6,4 +6,8 @@ declare module '*.vue' {
 declare module "*.svg" {
   const content: string
   export default content
+}
+
+declare module "@wanmaoor/giaoui" {
+  const Button: Function
 }
