@@ -20,7 +20,6 @@
 
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
-  import tagList from "@/models/tagList"
   import InputItem from "@/components/Money/InputItem.vue"
   import {Button} from "@wanmaoor/giaoui"
 
@@ -32,7 +31,7 @@
 
     created() {
       const id = this.$route.params.id
-      const tags = window.labelList
+      const tags = this.$store.state.tags.tagList
       this.tag = tags.filter(item => item.id === id)[0]
       if (this.tag) {
         console.log(this.tag)
@@ -43,15 +42,14 @@
 
     updateTag(name: string) {
       if (this.tag) {
-        tagList.update({id: this.tag.id, name})
+        this.$store.commit("updateTag", {id: this.tag.id, name})
       }
     }
 
     remove() {
       if (this.tag) {
-        if (tagList.remove(this.tag.id)) {
-          this.$router.back()
-        }
+        this.$store.commit("removeTag", this.tag.id)
+        this.$router.back()
       }
     }
 

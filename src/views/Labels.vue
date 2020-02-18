@@ -20,25 +20,18 @@
 
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
-  import tagList from "@/models/tagList"
   import {Button} from "@wanmaoor/giaoui"
 
   @Component({
     components: {Button}
   })
   export default class Labels extends Vue {
-    labels = window.labelList
+    labels = this.$store.state.tags.tagList
 
     createTag() {
       const labelName = window.prompt("请输入标签名")
       if (labelName) {
-        const status = tagList.create(labelName)
-        if (status === "duplicated") {
-          window.alert("标签名重复")
-        }
-        if (status === "success") {
-          window.alert("添加成功")
-        }
+        this.$store.commit("createTag", labelName)
       }
     }
   }

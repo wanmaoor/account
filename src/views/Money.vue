@@ -33,7 +33,7 @@
     "components": {Tag, InputItem, Tab, Panel}
   })
   export default class Money extends Vue {
-    labels = window.labelList
+    labels = this.$store.state.tags.tagList
     record: RecordItem = {
       tags: [],
       notes: "",
