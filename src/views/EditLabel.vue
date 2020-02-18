@@ -7,7 +7,7 @@
     <div class="inputItem">
       <InputItem
         :notes="tag.name"
-        @update:notes="updateTag"
+        @update:notes="update"
         placeholder="请输入标签名"
         title="标签名"
       />
@@ -31,16 +31,16 @@
 
     created() {
       const id = this.$route.params.id
-      const tags = this.$store.state.tags.tagList
+      const tags: IData[] = this.$store.state.tags.tagList
       this.tag = tags.filter(item => item.id === id)[0]
       if (this.tag) {
-        console.log(this.tag)
+        // console.log(this.tag)
       } else {
         this.$router.replace("/404")
       }
     }
 
-    updateTag(name: string) {
+    update(name: string) {
       if (this.tag) {
         this.$store.commit("updateTag", {id: this.tag.id, name})
       }
@@ -49,7 +49,6 @@
     remove() {
       if (this.tag) {
         this.$store.commit("removeTag", this.tag.id)
-        this.$router.back()
       }
     }
 
