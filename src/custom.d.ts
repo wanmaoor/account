@@ -3,7 +3,7 @@ interface RecordItem {
   notes: string | number
   type: string
   amount: number
-  createdAt?: Date
+  createdAt?: string
 }
 
 interface IData {

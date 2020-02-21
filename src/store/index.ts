@@ -13,7 +13,7 @@ const record = {
   mutations: {
     addRecord(state: IRecordList, payload: RecordItem) {
       const copy: RecordItem = JSON.parse(JSON.stringify(payload))
-      copy.createdAt = new Date()
+      copy.createdAt = new Date().toISOString()
       state.recordList.push(copy)
       localStorage.setItem("recordList", JSON.stringify(state.recordList))
     }
