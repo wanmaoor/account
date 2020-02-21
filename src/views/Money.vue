@@ -1,12 +1,18 @@
 <template>
-  <Layout content-class="xxx">
+  <Layout class="xxx">
     <Panel
       :expression.sync="record.amount"
       @submit="handleSubmit"
     />
     <Tab
-      :type.sync="record.type"
-    />
+      :value.sync="record.type"
+      :active="record.type"
+      onlyHeader
+      class="x"
+    >
+      <TabPanel value="-" label="支出"/>
+      <TabPanel value="+" label="收入"/>
+    </Tab>
     <div class="notes">
       <InputItem
         :notes.sync="record.notes"
@@ -25,12 +31,11 @@
   import {Component, Vue} from "vue-property-decorator"
   import Tag from "@/components/Money/Tag.vue"
   import InputItem from "@/components/Money/InputItem.vue"
-  import Tab from "@/components/Money/Tab.vue"
   import Panel from "@/components/Money/Panel.vue"
-
+  import {Tab, TabPanel} from "@wanmaoor/giaoui"
 
   @Component({
-    "components": {Tag, InputItem, Tab, Panel}
+    "components": {Tag, InputItem, Tab, Panel, TabPanel}
   })
   export default class Money extends Vue {
     labels = this.$store.state.tags.tagList
@@ -54,13 +59,17 @@
   }
 </script>
 
-<style>
-  .xxx {
+<style scoped lang="scss">
+  .xxx ::v-deep .view{
     display: flex;
     flex-direction: column-reverse;
   }
 
   .notes {
     padding: 12px 0;
+  }
+
+  .x ::v-deep .tab-header{
+    font-size: 1.5rem;
   }
 </style>
