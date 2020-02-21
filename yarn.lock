@@ -1553,10 +1553,10 @@
   resolved "https://registry.npm.taobao.org/@vue/web-component-wrapper/download/@vue/web-component-wrapper-1.2.0.tgz#bb0e46f1585a7e289b4ee6067dcc5a6ae62f1dd1"
   integrity sha1-uw5G8VhafiibTuYGfcxaauYvHdE=
 
-"@wanmaoor/giaoui@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmjs.org/@wanmaoor/giaoui/-/giaoui-0.0.12.tgz#278930fa891f10323012b488459b2e962c4c2c6e"
-  integrity sha512-3hwvzeJ3MJO/WIlvNu+Pn7mZR7NCQez4xGNPXBVPHqfxGAg4xyR9uWO0bjaWkSuQo13jUqPmK8S3qYs4yBnWBA==
+"@wanmaoor/giaoui@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmjs.org/@wanmaoor/giaoui/-/giaoui-0.0.13.tgz#87ccbbf9ad04ad3aee86008c26dc0c5108e6c98a"
+  integrity sha512-P/PUEudNG5IgDiUYRbmQZAp/X2UrkV8uIpqhpdKCS6dC4uWl+lqiBReTZV7hLzHmfsch22ECIiJvUMiUJoOaKA==
   dependencies:
     core-js "^3.4.4"
     register-service-worker "^1.6.2"
