@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="view" :class="contentClass">
+    <div class="view">
       <slot/>
     </div>
     <Nav/>
@@ -10,7 +10,6 @@
 <script lang="ts">
   export default {
     name: "Layout",
-    props: ["contentClass"]
   }
 </script>
 
