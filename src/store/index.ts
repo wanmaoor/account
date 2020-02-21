@@ -26,7 +26,7 @@ const tags = {
   },
   mutations: {
     createTag(state: ITagList, payload: string) {
-      const names = state.tagList.map(item => item.name)
+      const names: string[] = state.tagList.map(item => item.name)
       if (names.indexOf(payload) >= 0) {
         window.alert("标签名重复")
       } else {
@@ -36,9 +36,9 @@ const tags = {
       }
     },
     updateTag(state: ITagList, payload: IData) {
-      const idList = state.tagList.map(item => item.id)
+      const idList: string[] = state.tagList.map(item => item.id)
       if (idList.indexOf(payload.id) >= 0) {
-        const names = state.tagList.map(item => item.name)
+        const names: string[] = state.tagList.map(item => item.name)
         if (names.indexOf(payload.name) >= 0) {
           window.alert("标签名重复")
         } else {

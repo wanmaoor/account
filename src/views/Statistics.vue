@@ -13,9 +13,13 @@
         active="day"
         class="tab2"
       >
-        <TabPanel value="day" label="天">day day day</TabPanel>
-        <TabPanel value="week" label="周">week week week</TabPanel>
-        <TabPanel value="month" label="月">month month month</TabPanel>
+        <TabPanel value="day" label="按天">
+          <ol>
+            <li v-for="item in result" :key="item.id">{{item}}</li>
+          </ol>
+        </TabPanel>
+        <TabPanel value="week" label="按周">week week week</TabPanel>
+        <TabPanel value="month" label="按月">month month month</TabPanel>
       </Tab>
   </Layout>
 </template>
@@ -28,6 +32,14 @@
     components: {Tab, TabPanel}
   })
   export default class Statistics extends Vue {
+    get recordList() {
+      return this.$store.state.record.recordList
+    }
+
+    get result() {
+      return this.recordList
+    }
+
   }
 </script>
 
