@@ -10,4 +10,6 @@ declare module "*.svg" {
 
 declare module "@wanmaoor/giaoui" {
   const Button: Function
+  const Tab: Function
+  const TabPanel: Function
 }
