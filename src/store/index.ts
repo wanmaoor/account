@@ -2,6 +2,7 @@ import Vue from "vue"
 import Vuex from "vuex"
 import IDGenerator from "@/lib/IDGenerator"
 import router from "@/router"
+import clone from "@/lib/clone"
 
 Vue.use(Vuex)
 
@@ -9,10 +10,10 @@ Vue.use(Vuex)
 const record = {
   state: {
     recordList: JSON.parse(localStorage.getItem("recordList") || "[]")
-  },
+  } as IRecordList,
   mutations: {
     addRecord(state: IRecordList, payload: RecordItem) {
-      const copy: RecordItem = JSON.parse(JSON.stringify(payload))
+      const copy: RecordItem = clone(payload)
       copy.createdAt = new Date().toISOString()
       state.recordList.push(copy)
       localStorage.setItem("recordList", JSON.stringify(state.recordList))
