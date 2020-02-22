@@ -17,6 +17,7 @@ const record = {
       copy.createdAt = new Date().toISOString()
       state.recordList.push(copy)
       localStorage.setItem("recordList", JSON.stringify(state.recordList))
+      window.alert("保存成功")
     }
   }
 }
@@ -33,7 +34,6 @@ const tags = {
       } else {
         state.tagList.push({id: IDGenerator().toString(), name: payload})
         localStorage.setItem("tagList", JSON.stringify(state.tagList))
-        window.alert("添加成功")
       }
     },
     updateTag(state: ITagList, payload: IData) {
