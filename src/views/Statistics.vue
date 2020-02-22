@@ -7,7 +7,7 @@
       class="tab1"
     >
       <TabPanel label="支出" value="-">
-        <ol v-if="recordList.length>0">
+        <ol v-if="result.length>0">
           <li :key="index" v-for="(group, index) in result">
             <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
             <ol>
@@ -19,13 +19,13 @@
             </ol>
           </li>
         </ol>
-        <div v-else class="fallback">
-          你还没有开始记账哟~ 快去记账页面开始吧
+        <div class="fallback" v-else>
+          你还没有任何支出记录哟~ 快去记账页面开始吧
           <span style="display: block"><Icon name="null"/></span>
         </div>
       </TabPanel>
       <TabPanel label="收入" value="+">
-        <ol v-if="recordList.length>0">
+        <ol v-if="result.length>0">
           <li :key="index" v-for="(group, index) in result">
             <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
             <ol>
@@ -37,8 +37,8 @@
             </ol>
           </li>
         </ol>
-        <div v-else class="fallback">
-          你还没有开始记账哟~ 快去记账页面开始吧
+        <div class="fallback" v-else>
+          你还没有任何收入记录哟~ 快去记账页面开始吧
           <span style="display: block"><Icon name="null"/></span>
         </div>
       </TabPanel>
@@ -64,9 +64,9 @@
 
     get result() {
       const recordList: RecordItem[] = this.recordList
-      if (recordList.length === 0) return []
       const time = (obj: RecordItem) => dayjs(obj.createdAt).valueOf()
       const sortedRecordList = clone(recordList).filter(r => r.type === this.type).sort((a, b) => time(b) - time(a))
+      if (sortedRecordList.length === 0) return []
       const hashTable: Array<{ title: string, items: RecordItem[], total?: number }> = [{
         title: dayjs(sortedRecordList[0].createdAt).format("YYYY-MM-DD"),
         items: [sortedRecordList[0]]
