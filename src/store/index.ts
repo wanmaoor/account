@@ -63,6 +63,10 @@ const tags = {
           const tag = state.tagList.filter(item => item.id === payload.id)[0]
           tag.name = payload.name
           localStorage.setItem("tagList", JSON.stringify(state.tagList))
+          Vue.prototype.$message({
+            type: "success",
+            text: "修改标签名成功"
+          })
         }
       }
     },

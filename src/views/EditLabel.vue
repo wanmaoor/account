@@ -14,6 +14,7 @@
     </div>
     <div class="wrapper">
       <Button type="danger" round @click="remove">删除标签</Button>
+      <Button type="primary" round @click="submit" :disabled="disable">确认修改</Button>
     </div>
   </Layout>
 </template>
@@ -29,21 +30,24 @@
   })
   export default class EditLabel extends Vue {
     tag?: IData = undefined
+    payload?: IData = undefined
+    disable = true
 
     created() {
       const id = this.$route.params.id
       const tags: IData[] = this.$store.state.tags.tagList
       this.tag = tags.filter(item => item.id === id)[0]
       if (this.tag) {
-        // console.log(this.tag)
+        console.log(this.tag)
       } else {
         this.$router.replace("/404")
       }
     }
 
     update(name: string) {
+      this.disable = this.tag!.name === name
       if (this.tag && name) {
-        this.$store.commit("updateTag", {id: this.tag.id, name})
+        this.payload = {id: this.tag.id, name}
       } else {
         this.$message({
           type: "warning",
@@ -56,6 +60,11 @@
       if (this.tag) {
         this.$store.commit("removeTag", this.tag.id)
       }
+    }
+
+    submit() {
+      this.$store.commit("updateTag", this.payload)
+      this.$router.back()
     }
 
     back() {
@@ -91,6 +100,8 @@
   }
 
   .wrapper {
+    display: flex;
+    justify-content: space-evenly;
     text-align: center;
     padding: 16px;
     margin-top: 28px;
