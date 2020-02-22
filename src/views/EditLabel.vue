@@ -21,8 +21,9 @@
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
   import InputItem from "@/components/Money/InputItem.vue"
-  import {Button} from "@wanmaoor/giaoui"
+  import {Button, Message} from "@wanmaoor/giaoui"
 
+  Vue.use(Message)
   @Component({
     components: {Button, InputItem}
   })
@@ -41,8 +42,13 @@
     }
 
     update(name: string) {
-      if (this.tag) {
+      if (this.tag && name) {
         this.$store.commit("updateTag", {id: this.tag.id, name})
+      } else {
+        this.$message({
+          type: "warning",
+          text: "标签名不能为空哦"
+        })
       }
     }
 
