@@ -38,7 +38,7 @@
       const tags: IData[] = this.$store.state.tags.tagList
       this.tag = tags.filter(item => item.id === id)[0]
       if (this.tag) {
-        console.log(this.tag)
+        // console.log(this.tag)
       } else {
         this.$router.replace("/404")
       }
