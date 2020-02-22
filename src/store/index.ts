@@ -27,6 +27,13 @@ const tags = {
     tagList: JSON.parse(localStorage.getItem("tagList") || "[]")
   },
   mutations: {
+    initialTag(state: ITagList) {
+      const tags = ["衣", "食", "住", "行"]
+      tags.forEach(tag => {
+        state.tagList.push({id: IDGenerator().toString(), name: tag})
+      })
+      localStorage.setItem("tagList", JSON.stringify(state.tagList))
+    },
     createTag(state: ITagList, payload: string) {
       const names: string[] = state.tagList.map(item => item.name)
       if (names.indexOf(payload) >= 0) {

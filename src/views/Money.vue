@@ -49,11 +49,7 @@
 
     mounted() {
       if (this.labels.length == []) {
-
-        this.$store.commit("createTag", "衣")
-        this.$store.commit("createTag", "食")
-        this.$store.commit("createTag", "住")
-        this.$store.commit("createTag", "行")
+        this.$store.commit("initialTag")
       }
     }
 
