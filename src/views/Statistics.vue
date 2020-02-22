@@ -7,14 +7,19 @@
       class="tab1"
     >
       <TabPanel label="支出" value="-">
-        <ol v-if="result.length>0">
+        <ol class="outcome" v-if="result.length>0">
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
+            <h2 class="title">
+              {{handleTime(group.title)}}
+              <span>
+                总计: <span class="number">¥ {{group.total}}</span>
+              </span>
+            </h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
                 <span class="notes">{{item.notes}}</span>
-                <span>¥ {{item.amount}}</span>
+                <span class="number">- {{item.amount}}</span>
               </li>
             </ol>
           </li>
@@ -25,14 +30,19 @@
         </div>
       </TabPanel>
       <TabPanel label="收入" value="+">
-        <ol v-if="result.length>0">
+        <ol class="income" v-if="result.length>0">
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
+            <h2 class="title">
+              {{handleTime(group.title)}}
+              <span>
+                总计: <span class="number">¥ {{group.total}}</span>
+              </span>
+            </h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
                 <span class="notes">{{item.notes}}</span>
-                <span>¥ {{item.amount}}</span>
+                <span class="number">+ {{item.amount}}</span>
               </li>
             </ol>
           </li>
@@ -149,6 +159,18 @@
     .icon {
       width: 128px;
       height: 128px;
+    }
+  }
+
+  .income {
+    .number {
+      color: #009900;
+    }
+  }
+
+  .outcome {
+    .number {
+      color: #CC0000;
     }
   }
 
