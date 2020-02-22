@@ -5,13 +5,13 @@
       @submit="handleSubmit"
     />
     <Tab
-      :value.sync="record.type"
       :active="record.type"
-      onlyHeader
+      :value.sync="record.type"
       class="x"
+      onlyHeader
     >
-      <TabPanel value="-" label="支出"/>
-      <TabPanel value="+" label="收入"/>
+      <TabPanel label="支出" value="-"/>
+      <TabPanel label="收入" value="+"/>
     </Tab>
     <div class="notes">
       <InputItem
@@ -32,8 +32,9 @@
   import Tag from "@/components/Money/Tag.vue"
   import InputItem from "@/components/Money/InputItem.vue"
   import Panel from "@/components/Money/Panel.vue"
-  import {Tab, TabPanel} from "@wanmaoor/giaoui"
+  import {Message, Tab, TabPanel} from "@wanmaoor/giaoui"
 
+  Vue.use(Message)
   @Component({
     "components": {Tag, InputItem, Tab, Panel, TabPanel}
   })
@@ -58,10 +59,17 @@
 
     handleSubmit() {
       if (this.record.amount === 0) {
-        window.alert("你还没输入金额哦")
+        this.$message({
+          type: "warning",
+          text: "你还没输入金额哦"
+        })
         return
       } else {
         this.$store.commit("addRecord", this.record)
+        this.$message({
+          type: "success",
+          text: "保存成功"
+        })
         this.record.tags = []
         this.record.notes = ""
       }
@@ -69,8 +77,8 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .xxx ::v-deep .view{
+<style lang="scss" scoped>
+  .xxx ::v-deep .view {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -79,7 +87,7 @@
     padding: 12px 0;
   }
 
-  .x ::v-deep .tab-header{
+  .x ::v-deep .tab-header {
     font-size: 1.5rem;
   }
 </style>

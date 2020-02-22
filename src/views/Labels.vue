@@ -13,7 +13,7 @@
 
     </div>
     <div class="createTag">
-      <Button type="primary" @click="createTag">新建标签</Button>
+      <Button @click="createTag" type="primary">新建标签</Button>
     </div>
   </Layout>
 </template>
@@ -32,7 +32,6 @@
       const labelName = window.prompt("请输入标签名")
       if (labelName) {
         this.$store.commit("createTag", labelName)
-        window.alert("添加成功")
       }
     }
   }

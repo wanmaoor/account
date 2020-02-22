@@ -3,9 +3,10 @@ import Vuex from "vuex"
 import IDGenerator from "@/lib/IDGenerator"
 import router from "@/router"
 import clone from "@/lib/clone"
+import {Message} from "@wanmaoor/giaoui"
 
 Vue.use(Vuex)
-
+Vue.use(Message)
 
 const record = {
   state: {
@@ -17,7 +18,6 @@ const record = {
       copy.createdAt = new Date().toISOString()
       state.recordList.push(copy)
       localStorage.setItem("recordList", JSON.stringify(state.recordList))
-      window.alert("保存成功")
     }
   }
 }
@@ -30,10 +30,17 @@ const tags = {
     createTag(state: ITagList, payload: string) {
       const names: string[] = state.tagList.map(item => item.name)
       if (names.indexOf(payload) >= 0) {
-        window.alert("标签名重复")
+        Vue.prototype.$message({
+          type: "danger",
+          text: "标签名重复"
+        })
       } else {
         state.tagList.push({id: IDGenerator().toString(), name: payload})
         localStorage.setItem("tagList", JSON.stringify(state.tagList))
+        Vue.prototype.$message({
+          type: "success",
+          text: "添加成功"
+        })
       }
     },
     updateTag(state: ITagList, payload: IData) {
@@ -41,7 +48,10 @@ const tags = {
       if (idList.indexOf(payload.id) >= 0) {
         const names: string[] = state.tagList.map(item => item.name)
         if (names.indexOf(payload.name) >= 0) {
-          window.alert("标签名重复")
+          Vue.prototype.$message({
+            type: "danger",
+            text: "标签名重复"
+          })
         } else {
           const tag = state.tagList.filter(item => item.id === payload.id)[0]
           tag.name = payload.name
