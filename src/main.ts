@@ -12,11 +12,7 @@ Vue.config.productionTip = false
 Vue.component("Nav", Nav)
 Vue.component("Layout", Layout)
 Vue.component("Icon", Icon)
-Vue.directive("focus", {
-  inserted: function (el) {
-    el.focus()
-  }
-})
+
 new Vue({
   router,
   store,
