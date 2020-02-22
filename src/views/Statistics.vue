@@ -4,18 +4,8 @@
       :value.sync="type"
       active="-"
       class="tab1"
-      noBar
-      onlyHeader
     >
-      <TabPanel label="支出" value="-"/>
-      <TabPanel label="收入" value="+"/>
-    </Tab>
-    <Tab
-      :value.sync="interval"
-      active="day"
-      class="tab2"
-    >
-      <TabPanel label="按天" value="day">
+      <TabPanel label="支出" value="-">
         <ol>
           <li :key="index" v-for="(group, index) in result">
             <h2 class="title">{{handleTime(group.title)}}</h2>
@@ -29,10 +19,21 @@
           </li>
         </ol>
       </TabPanel>
-      <TabPanel label="按周" value="week">week week week</TabPanel>
-      <TabPanel label="按月" value="month">month month month</TabPanel>
+      <TabPanel label="收入" value="+">
+        <ol>
+          <li :key="index" v-for="(group, index) in result">
+            <h2 class="title">{{handleTime(group.title)}}</h2>
+            <ol>
+              <li :key="item.id" class="record" v-for="item in group.items">
+                <span>{{tagString(item.tags)}}</span>
+                <span class="notes">{{item.notes}}</span>
+                <span>¥ {{item.amount}}</span>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </TabPanel>
     </Tab>
-
   </Layout>
 </template>
 
@@ -40,6 +41,7 @@
   import {Component, Vue} from "vue-property-decorator"
   import {Tab, TabPanel} from "@wanmaoor/giaoui"
   import dayjs from "dayjs"
+  import clone from "@/lib/clone"
 
   interface IHashTable {
     [key: string]: {
@@ -60,14 +62,25 @@
     }
 
     get result() {
-      const {recordList} = this
-      const hashTable: IHashTable = {}
-      for (const recordListElement of recordList) {
-        const [date] = recordListElement.createdAt.split("T")
-        hashTable[date] = hashTable[date] || {title: date, items: []}
-        hashTable[date].items.push(recordListElement)
+      const recordList: RecordItem[] = this.recordList
+      if (recordList.length === 0) return []
+      const sortedRecordList = clone(recordList).filter(r => r.type === this.type).sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf())
+      const hashTable: Array<{ title: string, items: RecordItem[] }> = [{
+        title: dayjs(sortedRecordList[0].createdAt).format("YYYY-MM-DD"),
+        items: [sortedRecordList[0]]
+      }]
+      for (let i = 1; i < sortedRecordList.length; i++) {
+        const current = sortedRecordList[i]
+        const last = hashTable[hashTable.length - 1]
+        if (dayjs(last.title).isSame(dayjs(current.createdAt), "day")) {
+          last.items.push(current)
+        } else {
+          hashTable.push({
+            title: dayjs(current.createdAt).format("YYYY-MM-DD"),
+            items: [current]
+          })
+        }
       }
-
       return hashTable
     }
 
@@ -75,7 +88,7 @@
       return tags.length === 0 ? "未添加标签" : tags.join(",")
     }
 
-    handleTime(ISOString: stirng) {
+    handleTime(ISOString: string) {
       const api = dayjs(ISOString)
       if (api.isSame(dayjs(), "day")) {
         return "今天"
