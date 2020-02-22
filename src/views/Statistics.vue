@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <Tab
+      :height="3"
       :value.sync="type"
       active="-"
       class="tab1"
@@ -8,7 +9,7 @@
       <TabPanel label="支出" value="-">
         <ol>
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{handleTime(group.title)}}</h2>
+            <h2 class="title">{{handleTime(group.title)}} <span>{{group.total}}</span></h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
@@ -22,7 +23,7 @@
       <TabPanel label="收入" value="+">
         <ol>
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{handleTime(group.title)}}</h2>
+            <h2 class="title">{{handleTime(group.title)}} <span>{{group.total}}</span></h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
@@ -43,19 +44,11 @@
   import dayjs from "dayjs"
   import clone from "@/lib/clone"
 
-  interface IHashTable {
-    [key: string]: {
-      title: string,
-      items: RecordItem []
-    }
-  }
-
   @Component({
     components: {Tab, TabPanel}
   })
   export default class Statistics extends Vue {
     type = "-"
-    interval = "day"
 
     get recordList() {
       return this.$store.state.record.recordList
@@ -65,7 +58,7 @@
       const recordList: RecordItem[] = this.recordList
       if (recordList.length === 0) return []
       const sortedRecordList = clone(recordList).filter(r => r.type === this.type).sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf())
-      const hashTable: Array<{ title: string, items: RecordItem[] }> = [{
+      const hashTable: Array<{ title: string, items: RecordItem[], total?: number }> = [{
         title: dayjs(sortedRecordList[0].createdAt).format("YYYY-MM-DD"),
         items: [sortedRecordList[0]]
       }]
@@ -81,6 +74,9 @@
           })
         }
       }
+      hashTable.map(group => {
+        group.total = group.items.reduce((sum, item) => sum + item.amount, 0)
+      })
       return hashTable
     }
 

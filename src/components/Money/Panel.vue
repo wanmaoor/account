@@ -25,7 +25,7 @@
 
   @Component
   export default class Panel extends Vue {
-    @Prop() expression!: number
+    @Prop(Number) expression!: number
     output: string = this.expression.toString()
 
     typeNumber(e: MouseEvent) {
