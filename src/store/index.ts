@@ -68,9 +68,13 @@ const tags = {
         }
       }
       if (index >= 0) {
-        state.tagList.splice(index, 1)
+        const label = state.tagList.splice(index, 1)[0]
         localStorage.setItem("tagList", JSON.stringify(state.tagList))
         router.back()
+        Vue.prototype.$message({
+          type: "danger",
+          text: `删除 ${label.name} 标签成功`
+        })
       }
     }
   }
