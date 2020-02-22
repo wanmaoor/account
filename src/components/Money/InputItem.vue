@@ -7,7 +7,6 @@
         :value="notes"
         @input="handleChange($event.target.value)"
         type="text"
-        v-focus
       >
     </label>
   </div>
