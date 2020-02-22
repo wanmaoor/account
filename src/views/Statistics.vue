@@ -9,7 +9,7 @@
       <TabPanel label="支出" value="-">
         <ol>
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{handleTime(group.title)}} <span>{{group.total}}</span></h2>
+            <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
@@ -57,7 +57,8 @@
     get result() {
       const recordList: RecordItem[] = this.recordList
       if (recordList.length === 0) return []
-      const sortedRecordList = clone(recordList).filter(r => r.type === this.type).sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf())
+      const time = (obj: RecordItem) => dayjs(obj.createdAt).valueOf()
+      const sortedRecordList = clone(recordList).filter(r => r.type === this.type).sort((a, b) => time(b) - time(a))
       const hashTable: Array<{ title: string, items: RecordItem[], total?: number }> = [{
         title: dayjs(sortedRecordList[0].createdAt).format("YYYY-MM-DD"),
         items: [sortedRecordList[0]]
