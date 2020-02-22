@@ -18,7 +18,7 @@
       <TabPanel label="按天" value="day">
         <ol>
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{group.title}}</h2>
+            <h2 class="title">{{handleTime(group.title)}}</h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
@@ -39,6 +39,7 @@
 <script lang="ts">
   import {Component, Vue} from "vue-property-decorator"
   import {Tab, TabPanel} from "@wanmaoor/giaoui"
+  import dayjs from "dayjs"
 
   interface IHashTable {
     [key: string]: {
@@ -72,6 +73,21 @@
 
     tagString(tags: IData[]) {
       return tags.length === 0 ? "未添加标签" : tags.join(",")
+    }
+
+    handleTime(ISOString: stirng) {
+      const api = dayjs(ISOString)
+      if (api.isSame(dayjs(), "day")) {
+        return "今天"
+      } else if (api.isSame(dayjs().subtract(1, "day"), "day")) {
+        return "昨天"
+      } else if (api.isSame(dayjs().subtract(2, "day"), "day")) {
+        return "前天"
+      } else if (api.isSame(dayjs(), "year")) {
+        return api.format("M月D日")
+      } else {
+        return api.format("YYYY年M月D日")
+      }
     }
   }
 </script>
