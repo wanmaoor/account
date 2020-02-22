@@ -32,8 +32,8 @@
       const labelName = window.prompt("请输入标签名")
       if (labelName) {
         this.$store.commit("createTag", labelName)
+        window.alert("添加成功")
       }
-      window.alert("添加成功")
     }
   }
 </script>
