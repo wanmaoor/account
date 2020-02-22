@@ -18,10 +18,12 @@
       <TabPanel label="按天" value="day">
         <ol>
           <li :key="index" v-for="(group, index) in result">
-            <h2>{{group.title}}</h2>
+            <h2 class="title">{{group.title}}</h2>
             <ol>
-              <li :key="item.id" v-for="item in group.items">
-                {{item.amount}} {{item.createdAt}}
+              <li :key="item.id" class="record" v-for="item in group.items">
+                <span>{{tagString(item.tags)}}</span>
+                <span class="notes">{{item.notes}}</span>
+                <span>¥ {{item.amount}}</span>
               </li>
             </ol>
           </li>
@@ -30,11 +32,7 @@
       <TabPanel label="按周" value="week">week week week</TabPanel>
       <TabPanel label="按月" value="month">month month month</TabPanel>
     </Tab>
-    <div>
-      type: {{type}}
-      <br>
-      interval: {{interval}}
-    </div>
+
   </Layout>
 </template>
 
@@ -72,8 +70,8 @@
       return hashTable
     }
 
-    updated() {
-      console.log(this.type, this.interval)
+    tagString(tags: IData[]) {
+      return tags.length === 0 ? "未添加标签" : tags.join(",")
     }
   }
 </script>
@@ -85,5 +83,28 @@
 
   .tab2 ::v-deep .tab-header {
     font-size: 1rem;
+  }
+
+  %item {
+    padding: 0 16px;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title {
+    @extend %item;
+  }
+
+  .record {
+    background: white;
+    @extend %item;
+  }
+
+  .notes {
+    margin-right: auto;
+    margin-left: 16px;
+    color: #999999;
   }
 </style>
