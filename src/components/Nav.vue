@@ -44,7 +44,7 @@
     }
 
     > .item.selected {
-      color: #CC0000;
+      color: #409eff;
     }
   }
 </style>
