@@ -7,7 +7,7 @@
       class="tab1"
     >
       <TabPanel label="支出" value="-">
-        <ol>
+        <ol v-if="recordList.length>0">
           <li :key="index" v-for="(group, index) in result">
             <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
             <ol>
@@ -19,11 +19,15 @@
             </ol>
           </li>
         </ol>
+        <div v-else class="fallback">
+          你还没有开始记账哟~ 快去记账页面开始吧
+          <span style="display: block"><Icon name="null"/></span>
+        </div>
       </TabPanel>
       <TabPanel label="收入" value="+">
-        <ol>
+        <ol v-if="recordList.length>0">
           <li :key="index" v-for="(group, index) in result">
-            <h2 class="title">{{handleTime(group.title)}} <span>{{group.total}}</span></h2>
+            <h2 class="title">{{handleTime(group.title)}} <span>总计: ¥ {{group.total}}</span></h2>
             <ol>
               <li :key="item.id" class="record" v-for="item in group.items">
                 <span>{{tagString(item.tags)}}</span>
@@ -33,6 +37,10 @@
             </ol>
           </li>
         </ol>
+        <div v-else class="fallback">
+          你还没有开始记账哟~ 快去记账页面开始吧
+          <span style="display: block"><Icon name="null"/></span>
+        </div>
       </TabPanel>
     </Tab>
   </Layout>
@@ -82,7 +90,7 @@
     }
 
     tagString(tags: IData[]) {
-      return tags.length === 0 ? "未添加标签" : tags.join(",")
+      return tags.length === 0 ? "未添加标签" : tags.join(", ")
     }
 
     handleTime(ISOString: string) {
@@ -133,4 +141,16 @@
     margin-left: 16px;
     color: #999999;
   }
+
+  .fallback {
+    padding: 16px;
+    text-align: center;
+
+    .icon {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+
 </style>
